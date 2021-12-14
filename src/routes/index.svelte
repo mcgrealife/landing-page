@@ -1,6 +1,9 @@
 <script>
   import { scale, slide, fade, fly } from "svelte/transition";
   import { OnMount } from 'fractils';
+  import {  mobile, screenH, screenW, scrollY } from 'fractils'
+
+  // $mobileThreshold = 1000
 
 // export let visible = false;
 // let init = false
@@ -8,23 +11,24 @@
 // onMount(() => {
 //   init = true;
 // });
+// easier method using https://github.com/sveltejs/svelte/issues/2845
 
 
 </script>
 
-
   <img class="header-logo" src="logo-rectangle.png" width="114" alt="logo-rect" />
   <div class="container">
-  
- 
     <img src="logo-square-1.png"  width=40 alt="logo-square" />
     <h1>A <span style="color: #366CA5">better</span> way to generate leads</h1>
    
     <p>Resider is a smart, efficient and helpful way to qualify and schedule your prosepective tenants.</p>
     <OnMount>
       <div in:fly={{ y: +500, duration: 1000}}  >
+        {#if $mobile}
+        <img in:fade src="image-1.png" width=200 alt="hero-1">
+        {:else}
         <img in:fade src="image-1.png" width=342 alt="hero-1">
-      
+        {/if}
     
     <div class="section2">
         <h2>Platform <span style="color: #366CA5">integrity</span></h2>
