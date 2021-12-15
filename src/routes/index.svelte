@@ -1,7 +1,9 @@
 <script>
   import { scale, slide, fade, fly } from "svelte/transition";
   import { OnMount } from 'fractils';
+  import { Fractils } from 'fractils';
   import {  mobile, screenH, screenW, scrollY } from 'fractils'
+  
 
   // $mobileThreshold = 1000
 
@@ -16,25 +18,27 @@
 
 </script>
 
+<Fractils />
+
 {#if $mobile == false}
 <div class="desktop-header">
-  <img class="header-logo" src="logo-rectangle.png" width="114" alt="logo-rect" />
+  <img class="header-logo-desktop" src="logo-rectangle.png" width="101" height="50" alt="logo-rect" />
   <button class="btn-primary">Schedule Demo</button>
 </div>
 {:else}
-<img class="header-logo" src="logo-rectangle.png" width="114" alt="logo-rect" />
+<img class="header-logo" src="logo-rectangle.png" width="114" height="57" alt="logo-rect" />
 {/if}
   <div class="container">
-    <img src="logo-square-1.png"  width=40 alt="logo-square" />
-    <h1>A <span style="color: #366CA5">better</span> way to generate leads</h1>
+    <img src="logo-square-1.png" width=40 alt="logo-square" style={'margin-bottom: 28px'}/>
+    <h1 class="{$mobile ? '' : 'h1-desktop'}" style={'margin-bottom: 16px'}>A <span style="color: #366CA5">better</span> way to generate leads</h1>
    
-    <p>Resider is a smart, efficient and helpful way to qualify and schedule your prosepective tenants.</p>
+    <p class="{$mobile == false && 'p-desktop'}">Resider is a smart, efficient and helpful way to qualify and schedule your prosepective tenants.</p>
     <OnMount>
       <div in:fly={{ y: +500, duration: 1000}}  >
         {#if $mobile}
-        <img in:fade src="image-1.png" width=200 alt="hero-1">
+        <img in:fade src="image-1.png" width=342 alt="hero-1" style="margin-top:45px">
         {:else}
-        <img in:fade src="image-1.png" width=342 alt="hero-1">
+        <img in:fade src="image-1.png" width=492 alt="hero-1" style="margin-top:24px">
         {/if}
     
     <div class="section2">
@@ -67,8 +71,12 @@
   * {
     font-family: "Gilroy", "Open Sans", -apple-system;
     overflow-x: hidden;
+    padding: 0;
+    margin: 0;
     
   }
+
+
 
   .container {
       display: flex;
@@ -76,17 +84,20 @@
       align-content: center;
       align-items: center;
       text-align: center;
-      
-      
-    padding: 20px;
-    padding-top: 26px;
+      padding: 20px;
+      padding-top: 20px;
   }
 
   .desktop-header {
     width: 100%;
     height: 72px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 2px 6px  rgba(0, 0, 0, 0.12);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
   }
+
 
   .section2 {
       padding-top: 82px;
@@ -97,10 +108,23 @@
   .header-logo {
     margin: 16px;
   }
+  .header-logo-desktop {
+    margin: 12px 0px 10px 24px ;
+  }
 
   .btn-primary {
     background-color: #366CA5;
     color: white;
+    border: none;
+    width: 153px;
+    height: 48px;
+    font-family: "Gilroy", "Open Sans", -apple-system;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.2px;
+    border-radius: 4px;
+    margin: 12px;
 
   }
 
@@ -112,6 +136,18 @@
     color: #3C4043;
     max-width: 326px;
   }
+
+
+  .h1-desktop {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 76px;
+    letter-spacing: 0.1px;
+    color: #3C4043;
+    max-width: 531px;
+  }
+
+
 
   h2 {
     font-weight: 700;
@@ -129,6 +165,15 @@
       max-width: 326px;
       text-align: center;
 ;
+  }
+  
+  .p-desktop {
+      font-size: 24px;
+      line-height: 36px;
+      font-weight: 400;
+      color: #606367;
+      max-width: 326px;
+      text-align: center;
   }
 
   .p2 {
