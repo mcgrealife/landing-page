@@ -8,6 +8,6 @@ import { Fractils } from 'fractils'
 
 <Fractils />
 
-<main class="container">
+<main>
 <slot />
 </main>

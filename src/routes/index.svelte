@@ -16,7 +16,14 @@
 
 </script>
 
+{#if $mobile == false}
+<div class="desktop-header">
   <img class="header-logo" src="logo-rectangle.png" width="114" alt="logo-rect" />
+  <button class="btn-primary">Schedule Demo</button>
+</div>
+{:else}
+<img class="header-logo" src="logo-rectangle.png" width="114" alt="logo-rect" />
+{/if}
   <div class="container">
     <img src="logo-square-1.png"  width=40 alt="logo-square" />
     <h1>A <span style="color: #366CA5">better</span> way to generate leads</h1>
@@ -59,6 +66,8 @@
 <style>
   * {
     font-family: "Gilroy", "Open Sans", -apple-system;
+    overflow-x: hidden;
+    
   }
 
   .container {
@@ -68,8 +77,15 @@
       align-items: center;
       text-align: center;
       
+      
     padding: 20px;
     padding-top: 26px;
+  }
+
+  .desktop-header {
+    width: 100%;
+    height: 72px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.12);
   }
 
   .section2 {
@@ -80,6 +96,12 @@
 
   .header-logo {
     margin: 16px;
+  }
+
+  .btn-primary {
+    background-color: #366CA5;
+    color: white;
+
   }
 
   h1 {
