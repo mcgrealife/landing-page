@@ -1,6 +1,6 @@
 <script>
   import { scale, slide, fade, fly } from "svelte/transition";
-  import "@lottiefiles/lottie-player";
+  
   import { OnMount } from 'fractils';
   import Spacer from "../components/Spacer.svelte";
   
@@ -66,10 +66,10 @@ const handleClick = () => {
     <Spacer m=45 d=24/>
     <div in:fly={{ y: +500, duration: 1000}} >
       
-
+      
       <div class="lottie">
         <lottie-player 
-        src="phone.json" 
+        src="source.json" 
         background="transparent"  
         speed="1"  
         style="width: {desktop ? "492px": "300px"}; height: {desktop ? "492px" : "342px"}" 

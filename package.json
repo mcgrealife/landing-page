@@ -14,7 +14,6 @@
   },
   "type": "module",
   "dependencies": {
-    "@lottiefiles/lottie-player": "^1.5.3",
     "fractils": "^1.0.15"
   }
 }
