@@ -1,19 +1,18 @@
 <script>
   import { scale, slide, fade, fly } from "svelte/transition";
   import { OnMount } from 'fractils';
-  import { Fractils } from 'fractils';
-  import {  mobile, screenH, screenW, scrollY } from 'fractils'
+  import Spacer from "../components/Spacer.svelte";
   
 
-  // $mobileThreshold = 1000
+let innerWindowWidth
+$: mobile = innerWindowWidth <= 900
+$: desktop = !mobile
 
-// export let visible = false;
-// let init = false
+let color = {
+  "primaryBlue" : '#366CA5',
+  "primaryDark" : "3C4043"
+}
 
-// onMount(() => {
-//   init = true;
-// });
-// easier method using https://github.com/sveltejs/svelte/issues/2845
 
 const handleClick = () => {
   alert("SUP")
@@ -21,53 +20,74 @@ const handleClick = () => {
 
 </script>
 
-<Fractils />
+<lottie-player src="<URL HERE>" background="transparent"  speed="1"  style="width: 300px; height: 300px;" loop controls autoplay></lottie-player>
 
-{#if $mobile == false}
-<div class="desktop-header">
-  <img class="header-logo-desktop" src="logo-rectangle.png" width="101" height="50" alt="logo-rect" />
-  <button class="btn-primary" on:click={handleClick}>Schedule Demo</button>
-</div>
-{:else}
-<img class="header-logo" src="logo-rectangle.png" width="114" height="57" alt="logo-rect" />
-{/if}
-  <div class="container">
-    <img src="logo-square-1.png" width=40 alt="logo-square" style={'margin-bottom: 28px'}/>
-    <h1 class="{$mobile ? '' : 'h1-desktop'}" style={'margin-bottom: 16px'}>A <span style="color: #366CA5">better</span> way to generate leads</h1>
-   
-    <p class="{$mobile == false && 'p-desktop'}">Resider is a smart, efficient and helpful way to qualify and schedule your prosepective tenants.</p>
-    <OnMount>
-      <div in:fly={{ y: +500, duration: 1000}}  >
-        {#if $mobile}
-        <img in:fade src="image-1.png" width=342 alt="hero-1" style="margin-top:45px">
-        {:else}
-        <img in:fade src="image-1.png" width=492 alt="hero-1" style="margin-top:24px">
-        {/if}
-    
-    <div class="section2">
-        <h2>Platform <span style="color: #366CA5">integrity</span></h2>
-        <p class="p2">Resider solely consists of rental properties syndicated through data API’s. With up to date and accurate listings, your clients can browse with confidence.</p>
-        <br/>
-        <img style="padding-top: 45.69px" src="image-2.png" width=382 alt="card">
-      </div>
+<svelte:window bind:innerWidth={innerWindowWidth} />
 
-
-      <div class="section2">
-        <h2><span style="color: #366CA5">Move in date</span> filter</h2>
-        <p class="p2">Qualified leads are our emphasis. Allowing users to narrow down exact availability by their move in date is the first step.</p>
-        <br/>
-        <img style="padding-top: 45.69px" src="image-move-date.png" width=382 alt="card">
-      </div>
-
-
-
-      <div class="section3">
-          
-      </div>
-    </div>
-    </OnMount>
-    
+<!-- header -->
+  {#if desktop}
+  <div class="desktop-header">
+    <img 
+      style="margin: 12px 0px 10px 24px" 
+      src="logo-rectangle.png" 
+      alt="logo-rect" 
+      width="101" height="50"
+    />
+    <button class="btn-primary" on:click={handleClick}>Schedule Demo</button>
   </div>
+  {:else}
+  <img 
+    style="margin-left: 28px; margin-top: 24px;" 
+    src="logo-rectangle.png" 
+    alt="logo-rect" 
+    width="114" height="57" 
+  />
+  {/if}
+
+  <Spacer m=36 d=48 />
+
+<div class="container">
+  <img 
+    src="logo-square-1.png" 
+    width={desktop ? 56 : 40}
+    alt="logo-square"/>
+    <Spacer m=28 d=28 />
+
+  <h1 class="{desktop && 'h1-desktop'}">
+    A <span style="color: {color.primaryBlue}">better </span> way to generate leads
+  </h1>
+
+  <Spacer m=16 d=16 />
+  
+  <p class="{desktop && 'p-desktop'}">Resider is a smart, efficient and helpful way to qualify and schedule your prosepective tenants.</p>
+  
+  <OnMount>
+    <Spacer m=45 d=24/>
+    <div in:fly={{ y: +500, duration: 1000}}>
+
+      <img in:fade src="image-1.png" width={desktop ? 492 : 342} alt="hero-1" >
+
+      <Spacer m=82 d=82 />
+      <div class="section2">
+          <h2>Platform <span style="color: #366CA5">integrity</span></h2>
+          <p class="p2">Resider solely consists of rental properties syndicated through data API’s. With up to date and accurate listings, your clients can browse with confidence.</p>
+          <br/>
+          <Spacer m=46 d=46 />
+          <img src="image-2.png" width=382 alt="card">
+        </div>
+
+        <Spacer m=82 d=82 />
+        <div class="section2">
+          <h2><span style="color: #366CA5">Move in date</span> filter</h2>
+          <p class="p2">Qualified leads are our emphasis. Allowing users to narrow down exact availability by their move in date is the first step.</p>
+          <br/>
+          <Spacer m=46 d=46 />
+          <img src="image-move-date.png" width=382 alt="card">
+        </div>
+    </div>
+  </OnMount>
+  
+</div>
   
 
 <style>
@@ -76,10 +96,7 @@ const handleClick = () => {
     overflow-x: hidden;
     padding: 0;
     margin: 0;
-    
   }
-
-
 
   .container {
       display: flex;
@@ -87,8 +104,6 @@ const handleClick = () => {
       align-content: center;
       align-items: center;
       text-align: center;
-      padding: 20px;
-      padding-top: 20px;
   }
 
   .desktop-header {
@@ -98,21 +113,14 @@ const handleClick = () => {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 28px;
   }
 
 
-  .section2 {
-      padding-top: 82px;
-  }
-
-
+  
 
   .header-logo {
-    margin: 16px;
-  }
-  .header-logo-desktop {
-    margin: 12px 0px 10px 24px ;
+    margin-left: 28px;
+    margin-top: 24px;
   }
 
   .btn-primary {
