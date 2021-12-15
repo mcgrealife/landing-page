@@ -1,5 +1,6 @@
 <script>
   import { scale, slide, fade, fly } from "svelte/transition";
+  import "@lottiefiles/lottie-player";
   import { OnMount } from 'fractils';
   import Spacer from "../components/Spacer.svelte";
   
@@ -20,7 +21,7 @@ const handleClick = () => {
 
 </script>
 
-<lottie-player src="<URL HERE>" background="transparent"  speed="1"  style="width: 300px; height: 300px;" loop controls autoplay></lottie-player>
+
 
 <svelte:window bind:innerWidth={innerWindowWidth} />
 
@@ -63,9 +64,20 @@ const handleClick = () => {
   
   <OnMount>
     <Spacer m=45 d=24/>
-    <div in:fly={{ y: +500, duration: 1000}}>
+    <div in:fly={{ y: +500, duration: 1000}} >
+      
 
-      <img in:fade src="image-1.png" width={desktop ? 492 : 342} alt="hero-1" >
+      <div class="lottie">
+        <lottie-player 
+        src="phone.json" 
+        background="transparent"  
+        speed="1"  
+        style="width: {desktop ? "492px": "300px"}; height: {desktop ? "492px" : "342px"}" 
+        autoplay
+        >
+        </lottie-player>
+      </div>
+      <!-- <img in:fade src="image-1.png" width={desktop ? 492 : 342} alt="hero-1" > -->
 
       <Spacer m=82 d=82 />
       <div class="section2">
@@ -115,7 +127,13 @@ const handleClick = () => {
     align-items: center;
   }
 
-
+.lottie {
+    display:flex;
+    flex-direction: column;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+}
   
 
   .header-logo {
