@@ -15,6 +15,9 @@
 // });
 // easier method using https://github.com/sveltejs/svelte/issues/2845
 
+const handleClick = () => {
+  alert("SUP")
+}
 
 </script>
 
@@ -23,7 +26,7 @@
 {#if $mobile == false}
 <div class="desktop-header">
   <img class="header-logo-desktop" src="logo-rectangle.png" width="101" height="50" alt="logo-rect" />
-  <button class="btn-primary">Schedule Demo</button>
+  <button class="btn-primary" on:click={handleClick}>Schedule Demo</button>
 </div>
 {:else}
 <img class="header-logo" src="logo-rectangle.png" width="114" height="57" alt="logo-rect" />
@@ -125,6 +128,7 @@
     letter-spacing: 0.2px;
     border-radius: 4px;
     margin: 12px;
+    cursor: pointer;
 
   }
 
