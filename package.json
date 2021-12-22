@@ -14,6 +14,7 @@
   },
   "type": "module",
   "dependencies": {
-    "fractils": "^1.0.15"
+    "fractils": "^1.0.15",
+    "svelte-inview": "^2.1.1"
   }
 }
